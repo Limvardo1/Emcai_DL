@@ -1,0 +1,17 @@
+{
+  "name": "resumeai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ResumeAI — AI Resume Analyzer & Career Recommendation (TF-IDF + MLP)",
+  "scripts": {
+    "install:api": "npm --prefix apps/api install",
+    "install:web": "npm --prefix apps/web install",
+    "dev:api": "npm --prefix apps/api run dev",
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev:ml": "services/ml\\.venv\\Scripts\\python.exe -m uvicorn src.main:app --host 127.0.0.1 --port 8001 --app-dir services/ml",
+    "build:web": "npm --prefix apps/web run build",
+    "smoke:ml": "cd services/ml && .venv\\Scripts\\python.exe -m scripts.smoke_test",
+    "samples": "cd services/ml && .venv\\Scripts\\python.exe -m scripts.make_samples",
+    "backfill:jobs": "npm --prefix apps/api run backfill:jobs"
+  }
+}

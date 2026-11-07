@@ -1,0 +1,156 @@
+{
+  "model_version": "mlp-tfidf-v2",
+  "trained_at_utc": "2026-11-06T13:06:04.346374+00:00",
+  "dataset": {
+    "source": "kaggle:snehaanbhawal/resume-dataset",
+    "sha256": "816a7cd985a9a41e3ce8d1e83cb7e1beb1e854a89c1cf1fd0d75494faaa0559d",
+    "raw_rows": 2484,
+    "rows_after_cleaning": 2481,
+    "n_classes": 24,
+    "class_counts": {
+      "INFORMATION-TECHNOLOGY": 120,
+      "BUSINESS-DEVELOPMENT": 119,
+      "ADVOCATE": 118,
+      "CHEF": 118,
+      "ENGINEERING": 118,
+      "ACCOUNTANT": 118,
+      "FINANCE": 117,
+      "FITNESS": 117,
+      "SALES": 116,
+      "AVIATION": 116,
+      "BANKING": 115,
+      "HEALTHCARE": 115,
+      "CONSULTANT": 115,
+      "CONSTRUCTION": 112,
+      "PUBLIC-RELATIONS": 111,
+      "HR": 110,
+      "DESIGNER": 107,
+      "ARTS": 103,
+      "TEACHER": 102,
+      "APPAREL": 97,
+      "DIGITAL-MEDIA": 96,
+      "AGRICULTURE": 63,
+      "AUTOMOBILE": 36,
+      "BPO": 22
+    },
+    "imbalance_ratio": 5.454545454545454
+  },
+  "split": {
+    "strategy": "StratifiedGroupKFold(n_splits=5) + near-duplicate groups",
+    "near_duplicate_threshold": 0.9,
+    "train_rows": 1487,
+    "val_rows": 497,
+    "test_rows": 497,
+    "train_groups": 1482,
+    "val_groups": 493,
+    "test_groups": 494,
+    "group_overlap": {
+      "train/val": 0,
+      "train/test": 0,
+      "val/test": 0
+    }
+  },
+  "model": {
+    "pipeline": "TfidfVectorizer -> MLPClassifier",
+    "tfidf_params": {
+      "sublinear_tf": true,
+      "max_features": 10000,
+      "min_df": 2,
+      "max_df": 0.95,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "stop_words": "english",
+      "token_pattern": "(?u)\\b[\\w][\\w.+#-]*\\b"
+    },
+    "baseline_params": {
+      "hidden_layer_sizes": [
+        128
+      ],
+      "alpha": 0.0001,
+      "learning_rate_init": 0.001,
+      "batch_size": 32
+    },
+    "best_params": {
+      "mlp__hidden_layer_sizes": [
+        256
+      ],
+      "mlp__alpha": 0.001,
+      "mlp__learning_rate_init": 0.0005,
+      "mlp__batch_size": 16
+    },
+    "search_space": {
+      "hidden_layer_sizes": [
+        [
+          64
+        ],
+        [
+          128
+        ],
+        [
+          256
+        ],
+        [
+          128,
+          64
+        ],
+        [
+          256,
+          128
+        ]
+      ],
+      "alpha": [
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01
+      ],
+      "learning_rate_init": [
+        0.0005,
+        0.001
+      ],
+      "batch_size": [
+        16,
+        32,
+        64
+      ]
+    },
+    "n_candidates": 8,
+    "selection_score": 0.6466703909865827,
+    "final_n_iter": 56
+  },
+  "validation_out_of_sample": {
+    "val_accuracy": 0.6881287726358148,
+    "val_top3_accuracy": 0.8490945674044266,
+    "val_precision_macro": 0.693876809418512,
+    "val_recall_macro": 0.6555241105512845,
+    "val_f1_macro": 0.6530595159177434,
+    "val_f1_weighted": 0.676863714592356
+  },
+  "test_sealed": {
+    "test_accuracy": 0.6680080482897385,
+    "test_top3_accuracy": 0.8772635814889336,
+    "test_precision_macro": 0.6308708720763222,
+    "test_recall_macro": 0.6198959852511531,
+    "test_f1_macro": 0.6153588538946013,
+    "test_f1_weighted": 0.6585548528229791
+  },
+  "calibration_test": {
+    "ece_10bin": 0.05857921476647443,
+    "mean_confidence": 0.676224758318235
+  },
+  "runtime_seconds": {
+    "baseline": 41.907371520996094,
+    "best_search_candidate": 166.46089220046997,
+    "final_refit": 573.4557435512543,
+    "total_search": 558.7309310436249
+  },
+  "environment": {
+    "python": "3.11.5",
+    "sklearn": "1.6.1",
+    "numpy": "2.0.2",
+    "pandas": "2.2.3"
+  }
+}

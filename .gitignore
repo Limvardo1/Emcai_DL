@@ -1,0 +1,37 @@
+# dependencies
+node_modules/
+.venv/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# berkas model (biner besar, dilatih ulang lewat notebook)
+*.pkl
+
+# data lokal (mode demo)
+apps/api/data/
+
+# dataset training (diunduh ulang oleh notebook)
+latih_model/data/
+
+# env
+.env
+.env.local
+apps/api/.env
+apps/web/.env.local
+
+# os / editor
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+
+# log
+*.log
