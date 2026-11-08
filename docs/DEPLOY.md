@@ -9,10 +9,10 @@ Pengguna
 Vercel (apps/web, Next.js 15)
    │  rewrite /api/*  ->  API_URL
    ▼
-Render: resumeai-api (Express, Docker)
+Render: emcai-resumeai-api (Express, Docker)
    │  ML_SERVICE_URL
    ▼
-Render: resumeai-ml (FastAPI + model .pkl, Docker)
+Render: emcai-resumeai-ml (FastAPI + model .pkl, Docker)
    │
    ▼
 Supabase (Postgres + Storage)
@@ -82,6 +82,8 @@ Nilai lain sudah diatur di blueprint: `SUPABASE_BUCKET=resumes`,
 1. Buka `vercel.com` → **Add New → Project** → import `Limvardo1/Emcai_DL`.
 2. Pada **Root Directory**, pilih `apps/web`.
 3. Framework terdeteksi **Next.js**; biarkan build command default.
+   Pada **Settings → General → Node.js Version**, pilih **22.x**
+   (`@supabase/supabase-js` meminta Node ≥ 22).
 4. Isi **Environment Variables**:
 
 | Key | Nilai |
@@ -91,6 +93,9 @@ Nilai lain sudah diatur di blueprint: `SUPABASE_BUCKET=resumes`,
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | dari `apps/web/.env.local` |
 
 5. **Deploy**.
+6. Di Supabase → **Authentication → URL Configuration**, isi **Site URL**
+   dengan URL Vercel dan tambahkan `https://<project>.vercel.app/**` ke
+   **Redirect URLs**, agar tautan konfirmasi email tidak kembali ke localhost.
 
 Catatan: `API_URL` dibaca **saat build** oleh `next.config.mjs`.
 Kalau URL API berubah, ubah env lalu **Redeploy**, bukan hanya restart.

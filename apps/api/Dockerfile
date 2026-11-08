@@ -1,6 +1,6 @@
 # ResumeAI API — Express.js
 # Dipakai untuk Hugging Face Space (port 7860) dan tetap kompatibel dengan Render.
-FROM node:20-slim
+FROM node:22-slim
 
 RUN useradd -m -u 1000 user
 
