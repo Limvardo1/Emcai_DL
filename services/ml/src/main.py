@@ -31,6 +31,12 @@ class TextPayload(BaseModel):
     text: str = Field(..., min_length=1)
 
 
+@app.get("/livez")
+def livez() -> dict:
+    """Cek ringan tanpa memuat model, dipakai health check platform."""
+    return {"status": "ok"}
+
+
 @app.get("/health")
 def health() -> dict:
     bundle = load_model()

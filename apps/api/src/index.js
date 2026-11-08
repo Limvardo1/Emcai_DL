@@ -11,6 +11,10 @@ const app = express();
 app.use(cors({ origin: config.webOrigin }));
 app.use(express.json({ limit: '1mb' }));
 
+app.get('/api/livez', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.get('/api/health', async (_req, res) => {
   const ml = await mlHealth();
   res.json({
