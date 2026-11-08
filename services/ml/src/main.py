@@ -37,6 +37,12 @@ def livez() -> dict:
     return {"status": "ok"}
 
 
+@app.get("/kaithhealth")
+def kaithhealth() -> dict:
+    """Health check khusus platform Leapcell (dipoll saat start)."""
+    return {"status": "ok"}
+
+
 @app.get("/health")
 def health() -> dict:
     bundle = load_model()

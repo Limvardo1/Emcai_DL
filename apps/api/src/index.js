@@ -15,6 +15,11 @@ app.get('/api/livez', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Leapcell mem-poll /kaithhealth pada port aplikasi saat start.
+app.get('/kaithhealth', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.get('/api/health', async (_req, res) => {
   const ml = await mlHealth();
   res.json({
