@@ -21,8 +21,8 @@ Supabase (Postgres + Storage)
 | Komponen | Host | URL |
 |---|---|---|
 | Web | Vercel | `https://<project>.vercel.app` |
-| API | Render | `https://resumeai-api.onrender.com` |
-| ML | Render | `https://resumeai-ml.onrender.com` |
+| API | Render | `https://emcai-resumeai-api.onrender.com` |
+| ML | Render | `https://emcai-resumeai-ml.onrender.com` |
 | Data | Supabase | project yang sudah dipakai saat pengembangan |
 
 ## 0. Prasyarat
@@ -60,14 +60,14 @@ Blueprint `render.yaml` sudah ada di root repo dan membuat dua service sekaligus
 | API | `WEB_ORIGIN` | `https://<project>.vercel.app` (boleh diisi belakangan) |
 
 Nilai lain sudah diatur di blueprint: `SUPABASE_BUCKET=resumes`,
-`MAX_FILE_MB=5`, `ML_SERVICE_URL=https://resumeai-ml.onrender.com`.
+`MAX_FILE_MB=5`, `ML_SERVICE_URL=https://emcai-resumeai-ml.onrender.com`.
 
 5. Tunggu build pertama: ML ±5–10 menit (scikit-learn + model 56,7 MB),
    API ±2 menit.
 
 ### Jika membuat manual (tanpa Blueprint)
 
-| Isi | `resumeai-ml` | `resumeai-api` |
+| Isi | `emcai-resumeai-ml` | `emcai-resumeai-api` |
 |---|---|---|
 | Type | Web Service | Web Service |
 | Runtime | Docker | Docker |
@@ -86,7 +86,7 @@ Nilai lain sudah diatur di blueprint: `SUPABASE_BUCKET=resumes`,
 
 | Key | Nilai |
 |---|---|
-| `API_URL` | `https://resumeai-api.onrender.com` |
+| `API_URL` | `https://emcai-resumeai-api.onrender.com` |
 | `NEXT_PUBLIC_SUPABASE_URL` | dari `apps/web/.env.local` |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | dari `apps/web/.env.local` |
 
@@ -95,7 +95,7 @@ Nilai lain sudah diatur di blueprint: `SUPABASE_BUCKET=resumes`,
 Catatan: `API_URL` dibaca **saat build** oleh `next.config.mjs`.
 Kalau URL API berubah, ubah env lalu **Redeploy**, bukan hanya restart.
 
-Setelah URL Vercel jadi, kembali ke Render → `resumeai-api` → Environment →
+Setelah URL Vercel jadi, kembali ke Render → `emcai-resumeai-api` → Environment →
 ubah `WEB_ORIGIN` menjadi URL Vercel tersebut.
 
 ## 3. Verifikasi
@@ -114,7 +114,7 @@ ubah `WEB_ORIGIN` menjadi URL Vercel tersebut.
 ## 4. Perawatan
 
 - **Service tidur setelah 15 menit** tanpa akses; bangunnya ±1 menit.
-  Sebelum demo, buka `https://resumeai-ml.onrender.com/health` lalu tunggu.
+  Sebelum demo, buka `https://emcai-resumeai-ml.onrender.com/health` lalu tunggu.
 - **750 jam instance/bulan** per workspace. Dua service yang hidup terus
   akan melewati kuota, jadi jangan pasang ping otomatis 24/7.
 - **Redeploy**: push ke `main` (auto-deploy) atau **Manual Deploy** di Render.

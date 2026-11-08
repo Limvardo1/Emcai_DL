@@ -4,7 +4,7 @@
 
 services:
   - type: web
-    name: resumeai-ml
+    name: emcai-resumeai-ml
     runtime: docker
     plan: free
     region: singapore
@@ -16,7 +16,7 @@ services:
         value: "1"
 
   - type: web
-    name: resumeai-api
+    name: emcai-resumeai-api
     runtime: docker
     plan: free
     region: singapore
@@ -35,6 +35,6 @@ services:
       - key: MAX_FILE_MB
         value: "5"
       - key: ML_SERVICE_URL
-        value: https://resumeai-ml.onrender.com
+        value: https://emcai-resumeai-ml.onrender.com
       - key: WEB_ORIGIN
         sync: false
